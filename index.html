@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Lucas Evans — Civil Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root{
+    --paper: #FBF8F2;
+    --ink: #17253B;
+    --ink-soft: #5B6B80;
+    --line: #DCD5C4;
+    --orange: #EA5B0C;
+    --blue: #1F4E8C;
+    --white: #FFFFFF;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #EFEAE0;
+    font-family: 'Inter', sans-serif;
+    padding: 28px 16px;
+  }
+
+  .card{
+    width: 100%;
+    max-width: 400px;
+    background: var(--paper);
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 24px 48px -16px rgba(23,37,59,0.28);
+  }
+
+  .header{
+    position: relative;
+    padding: 34px 26px 22px;
+    overflow: hidden;
+  }
+
+  .contours{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .header-content{
+    position: relative;
+    z-index: 1;
+  }
+
+  h1{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 34px;
+    color: var(--ink);
+    margin: 0 0 3px;
+    line-height: 1.05;
+  }
+
+  .role-line{
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+
+  .title{
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--blue);
+    margin: 0;
+  }
+
+  .gpa-badge{
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 11.5px;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    background: rgba(23,37,59,0.06);
+    border-radius: 2px;
+    padding: 2px 8px;
+    white-space: nowrap;
+  }
+
+  .subtitle{
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .divider{
+    height: 1px;
+    background: var(--line);
+    margin: 0 26px;
+  }
+
+  .contact{
+    padding: 18px 26px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-row{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .contact-row svg{
+    width: 16px;
+    height: 16px;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+  }
+
+  .contact-row span{
+    font-size: 13.5px;
+    font-weight: 500;
+    word-break: break-word;
+  }
+
+  .highlights{
+    padding: 18px 26px 4px;
+  }
+
+  .highlights ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .highlights li{
+    position: relative;
+    padding-left: 15px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .highlights li::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 4px;
+    height: 4px;
+    background: var(--ink-soft);
+  }
+
+  .highlights li:last-child{ margin-bottom: 0; }
+
+  .skills{
+    padding: 16px 26px 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .skill{
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink);
+    background: none;
+    border: 1px solid var(--line);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  .footer{
+    background: var(--ink);
+    padding: 16px 22px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .footer-actions{
+    display: flex;
+    gap: 8px;
+  }
+
+  .action-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 15px;
+    background: var(--orange);
+    color: var(--white);
+    border: none;
+    border-radius: 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  .action-btn.secondary{
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--white);
+  }
+
+  .action-btn:hover{ background: #C24A08; }
+  .action-btn.secondary:hover{ background: rgba(255,255,255,0.08); }
+  .action-btn svg{ width: 13px; height: 13px; }
+
+  .qr-box{
+    background: var(--white);
+    padding: 5px;
+    border-radius: 2px;
+    line-height: 0;
+  }
+  .qr-box canvas, .qr-box img{ display: block; width: 58px; height: 58px; }
+
+  @media (prefers-reduced-motion: reduce){
+    .action-btn{ transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="header">
+    <svg class="contours" viewBox="0 0 400 170" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M -20 150 C 60 120, 120 170, 200 140 C 280 110, 320 150, 420 120" stroke="#1F4E8C" stroke-opacity="0.10" stroke-width="2" fill="none"/>
+      <path d="M -20 165 C 70 138, 130 182, 210 158 C 290 132, 330 168, 420 140" stroke="#1F4E8C" stroke-opacity="0.14" stroke-width="2" fill="none"/>
+      <path d="M -20 180 C 80 156, 140 196, 220 174 C 300 150, 340 184, 420 158" stroke="#1F4E8C" stroke-opacity="0.18" stroke-width="2" fill="none"/>
+      <path d="M -20 -10 C 40 20, 90 -10, 150 15 C 210 40, 250 5, 310 25 C 350 38, 380 20, 420 30" stroke="#EA5B0C" stroke-opacity="0.12" stroke-width="2" fill="none"/>
+    </svg>
+    <div class="header-content">
+      <h1>Lucas Evans</h1>
+      <div class="role-line">
+        <p class="title">Civil Engineering Student</p>
+        <span class="gpa-badge">4.0 GPA</span>
+      </div>
+      <p class="subtitle">University of Florida · Class of 2029</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="contact">
+    <div class="contact-row">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>(321) 831-5285</span>
+    </div>
+    <a class="contact-row" href="mailto:evanslucas254@gmail.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+      <span>evanslucas254@gmail.com</span>
+    </a>
+    <a class="contact-row" href="https://www.linkedin.com/in/lucase254/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      <span>linkedin.com/in/lucase254</span>
+    </a>
+  </div>
+
+  <div class="highlights">
+    <ul>
+      <li>Transportation engineering study abroad — assessed bike &amp; pedestrian infrastructure for the University of Parma, Italy</li>
+      <li>Built Environment Resilience Research Lab — disaster preparedness &amp; recovery research</li>
+      <li>UF ASCE Chapter — traffic control competitor, Southeast Student Symposium</li>
+    </ul>
+  </div>
+
+  <div class="skills">
+    <span class="skill">AutoCAD</span>
+    <span class="skill">Civil 3D</span>
+    <span class="skill">Revit</span>
+    <span class="skill">ArcGIS</span>
+  </div>
+
+  <div class="footer">
+    <div class="footer-actions">
+      <a class="action-btn" href="mailto:evanslucas254@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+        Email
+      </a>
+      <button class="action-btn secondary" id="saveContactBtn" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Save
+      </button>
+    </div>
+    <div class="qr-box" id="qrcode"></div>
+  </div>
+</div>
+
+<script>
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://www.linkedin.com/in/lucase254/",
+    width: 58,
+    height: 58,
+    colorDark: "#17253B",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+
+  document.getElementById("saveContactBtn").addEventListener("click", function(){
+    const vcard = [
+      "BEGIN:VCARD",
+      "VERSION:3.0",
+      "N:Evans;Lucas;;;",
+      "FN:Lucas Evans",
+      "TITLE:Civil Engineering Student, University of Florida",
+      "ORG:University of Florida",
+      "TEL;TYPE=CELL:+13218315285",
+      "EMAIL;TYPE=INTERNET,HOME:evanslucas254@gmail.com",
+      "URL:https://www.linkedin.com/in/lucase254/",
+      "ADR;TYPE=HOME:;;;Gainesville;FL;;USA",
+      "NOTE:Civil Engineering student at UF \\, Class of 2029. GPA 4.0.",
+      "END:VCARD"
+    ].join("\n");
+
+    const blob = new Blob([vcard], { type: "text/vcard" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "Lucas-Evans.vcf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  });
+</script>
+
+</body>
+</html>
